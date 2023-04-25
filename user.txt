@@ -1,0 +1,52 @@
+===Banco de dados orvalh39_perfume.sql
+
+== Estrutura para tabela user
+
+|------
+|Coluna|Tipo|Nulo|Padrão
+|------
+|//**id**//|int(11)|Não|
+|email|varchar(250)|Não|
+|username|varchar(250)|Não|
+|password|varchar(250)|Não|
+|phone|varchar(250)|Não|
+|address|varchar(250)|Não|
+|passport|varchar(250)|Não|
+|status|tinyint(1)|Sim|NULL
+|perfil|varchar(20)|Sim|NULL
+|sexo|varchar(20)|Sim|NULL
+|cep|varchar(20)|Sim|NULL
+|endereco|varchar(20)|Sim|NULL
+|numero|varchar(20)|Sim|NULL
+|complemento|varchar(20)|Sim|NULL
+|cidade|varchar(20)|Sim|NULL
+|uf|varchar(20)|Sim|NULL
+|bairro|varchar(20)|Sim|NULL
+|nome|varchar(20)|Sim|NULL
+|rua|varchar(20)|Sim|NULL
+|plano|varchar(20)|Sim|NULL
+|column_b|varchar(1000)|Sim|NULL
+|descricao|varchar(1000)|Sim|NULL
+|recuperar_senha|varchar(20)|Sim|NULL
+|utilizador|varchar(20)|Não|
+|confirmacao|varchar(20)|Não|
+|cpf|varchar(20)|Sim|NULL
+|userId|int(11)|Sim|NULL
+|nascimento|varchar(90)|Sim|NULL
+== Despejando dados para a tabela user
+
+|70|bruno.pmoreira23@gmail.com|Marcelo Bruno Pinheiro Moreira|1234| | | |1|CONQUISTADOR|MASCULINO|06454080|NULL| | |Barueri|São Paulo|Jardim das Graças|Marcelo Moreira|Avenida Otaviano Alv|NULL|NULL|&lt;br&gt;
+       
+        Gosta de ser bem recebido em todos os lugares, pois seu maior triunfo é conquistar, irresistível e discreto, mas naturalmente moderno e inesperado. 
+       &lt;strong&gt; Notas:&lt;/strong&gt; Amadeirado e Amber levemente Adocicado sem esquecer as notas Aromáticas e Cítricas.|NULL| | |39449119899|NULL|NULL
+|71|huaisan2204@yahoo.com| |12345| | | |1|CONQUISTADOR|MASCULINO|06454080|NULL|1151| |Manaus|AM|Alphaville Centro In|San ang|R. Maromba|Bronze/Mensal|NULL|&lt;br&gt;
+       
+        Gosta de ser bem recebido em todos os lugares, pois seu maior triunfo é conquistar, irresistível e discreto, mas naturalmente moderno e inesperado. 
+       &lt;strong&gt; Notas:&lt;/strong&gt; Amadeirado e Amber levemente Adocicado sem esquecer as notas Aromáticas e Cítricas.|NULL| | |238.504.568-03|NULL|NULL
+|72|rutherles@gmail.com| |brendo| | | |NULL| |FEMININO|01153 000|NULL| | | | | |brendo rutherles| |NULL|NULL| |NULL| | |106.890.834-32|NULL|2022-09-15
+|73|huaisan2204@gmail.com| |123| | | |NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|bernard|NULL|NULL|NULL|NULL|NULL| | |23904040044|NULL|1980-04-14
+|74|brunoedif@gmail.com| |goleiro2014| | | |0|NULL|NULL| |NULL| | | | |NULL|TANIA MARIA ALVES DE| |NULL|NULL|NULL|NULL| | |712012872489|NULL|1999-12-29
+|75|rutherlesdev@gmail.com| |brendo1996| | | |NULL|NULL|NULL| |NULL| | | | |NULL|brendoii| |NULL|NULL|NULL|NULL| | |99999|NULL|2022-09-30
+|76|marcelobruno_4321@hotmail.com| |123456789| | | |NULL|SOFISTICADO|MASCULINO|02701000|NULL|331| |São Paulo|SP|Jardim das Graças|lama|Avenida Otaviano Alv|NULL|NULL|Com charme natural e orgulhoso de sua aparência, abusa de seu magnetismo e cultiva a arte de viver.Com sua autoconfiança e segurança, sabe exatamente o que quer.
+        &lt;strong&gt; Notas: &lt;/strong&gt; Amadeirado e Amber com toques Florais e de Especiarias Quentes.|NULL| | | |NULL|1992-03-23
+|77|gggggggggggg| |123| | | |NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|NULL|francisco|NULL|NULL|NULL|NULL|NULL| | | |NULL|1980-04-20
