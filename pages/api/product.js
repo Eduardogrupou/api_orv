@@ -20,9 +20,9 @@ function runMiddleware(req, res, fn) {
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
-  // Consulta para selecionar todos os produtos da tabela "perfumes"
-  const query = "SELECT * FROM product";
-  const products = await executeQuery({ query });
+  const query = "SELECT * FROM product WHERE 1 == ?";
+  const value = [1];
+  const products = await executeQuery(query, value);
 
   if (results.error) {
     res.status(500).json({ error: "Error executing the query" });
