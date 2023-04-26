@@ -19,16 +19,18 @@ function runMiddleware(req, res, fn) {
 
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
+  const result = await excuteQuery({
+    query:
+      "SELECT * FROM product WHERE 1 == ?",
+    values: [1],
+  });
+  console.log(result);
+  return res.status(200).json(result);
 
-  const query = "SELECT * FROM product WHERE 1 == ?";
-  const value = [1];
-  const products = await executeQuery(query, value);
-
-  if (results.error) {
-    res.status(500).json({ error: "Error executing the query" });
-    return;
-  }
-
-
-  res.status(200).json({ data: products });
 }
+
+if (results.error) {
+  res.status(500).json({ error: "Error executing the query" });
+  return;
+}
+
