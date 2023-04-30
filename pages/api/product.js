@@ -23,7 +23,7 @@ export default async function handler(req, res) {
   const { gender } = req.query;
 
   // Define a consulta SQL base
-  let query = "SELECT * FROM products";
+  let query = "SELECT * FROM product";
 
   // Verifica se o filtro de gênero foi especificado
   if (gender) {
