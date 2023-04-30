@@ -20,8 +20,8 @@ function runMiddleware(req, res, fn) {
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
-  // Consulta para selecionar todos os produtos da tabela "perfumes"
-  const query = "SELECT * FROM product LIMIT 10";
+  // Consulta para selecionar todos os produtos da tabela "perfumes" que sejam masculinos e limitando a 10 resultados
+  const query = "SELECT * FROM product WHERE gender = 'masculino' LIMIT 10";
   const results = await executeQuery({ query });
 
   if (results.error) {
@@ -42,3 +42,4 @@ export default async function handler(req, res) {
 
   res.status(200).json({ data: products });
 }
+
