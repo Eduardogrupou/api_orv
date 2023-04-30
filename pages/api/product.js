@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
   // Consulta para selecionar todos os produtos da tabela "perfumes" que sejam masculinos e limitando a 10 resultados
-  const query = "SELECT * FROM product WHERE gender = 'masculino' LIMIT 10";
+  const query = "SELECT * FROM product WHERE gender = 'female' LIMIT 10";
   const results = await executeQuery({ query });
 
   if (results.error) {
