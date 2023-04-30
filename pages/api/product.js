@@ -1,8 +1,8 @@
-import Cors from "cors";
-import executeQuery from "../../lib/db";
+import Cors from 'cors';
+import executeQuery from '../../lib/db';
 
 const cors = Cors({
-  methods: ["POST", "GET", "HEAD"],
+  methods: ['POST', 'GET', 'HEAD'],
 });
 
 function runMiddleware(req, res, fn) {
@@ -20,33 +20,60 @@ function runMiddleware(req, res, fn) {
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
-  const { gender } = req.query;
+  const { gender, brandId, search, query } = req.query;
 
-  // Define a consulta SQL base
-  let query = "SELECT * FROM product";
+  if (query) {
+    const results = await executeQuery({
+      query: `SELECT name FROM product WHERE name ILIKE '%${query}%' ORDER BY name LIMIT 10`,
+    });
 
-  // Verifica se o filtro de gênero foi especificado
-  if (gender) {
-    // Adiciona a cláusula WHERE na consulta SQL para filtrar por gênero
-    query += ` WHERE gender = '${gender}'`;
+    const products = results.map((row) => ({
+      name: row.name,
+    }));
+
+    res.status(200).json(products);
+    return;
   }
 
-  const results = await executeQuery({ query });
+  let querySql = "SELECT * FROM product";
+
+  if (gender || brandId || search) {
+    querySql += ' WHERE';
+
+    if (gender) {
+      querySql += ` gender = '${gender}'`;
+    }
+
+    if (brandId) {
+      const brandIdInt = parseInt(brandId, 10);
+      const whereClause = gender || search ? ' AND' : '';
+      querySql += `${whereClause} brand_id = ${brandIdInt}`;
+    }
+
+    if (search) {
+      const whereClause = gender || brandId ? ' AND' : '';
+      querySql += `${whereClause} name ILIKE '%${search}%'`;
+    }
+  }
+
+  querySql += ' ORDER BY name';
+
+  const results = await executeQuery({ query: querySql });
 
   if (results.error) {
-    res.status(500).json({ error: "Error executing the query" });
+    res.status(500).json({ error: 'Error executing the query' });
     return;
   }
 
   const products = results.map((row) => ({
-  id: row.id,
-  name: row.name,
-  image: row.image,
-  dcp: row.dcp,
-  gender: row.gender,
-  brand: row.brand_id, // assume-se que a tabela 'product' contém um campo 'brand_id' com o ID da marca
-  destaque: row.destaque,
-}));
+    id: row.id,
+    name: row.name,
+    image: row.image,
+    dcp: row.dcp,
+    gender: row.gender,
+    brand_id: row.brand_id,
+    destaque: row.destaque,
+  }));
 
   res.status(200).json({ data: products });
 }
