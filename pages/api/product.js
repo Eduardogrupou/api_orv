@@ -39,14 +39,14 @@ export default async function handler(req, res) {
   }
 
   const products = results.map((row) => ({
-    id: row.id,
-    name: row.name,
-    image: row.image,
-    dcp: row.dcp,
-    gender: row.gender,
-    brand_id: row.brand_id,
-    destaque: row.destaque,
-  }));
+  id: row.id,
+  name: row.name,
+  image: row.image,
+  dcp: row.dcp,
+  gender: row.gender,
+  brand: row.brand_id, // assume-se que a tabela 'product' contém um campo 'brand_id' com o ID da marca
+  destaque: row.destaque,
+}));
 
   res.status(200).json({ data: products });
 }
