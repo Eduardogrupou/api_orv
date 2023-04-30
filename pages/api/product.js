@@ -68,4 +68,4 @@ const results = await executeQuery({ query });
   }
 }
 
-export default handler;
+
