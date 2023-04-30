@@ -7,7 +7,7 @@ const cors = Cors({
 
 async function handler(req, res) {
   await runMiddleware(req, res, cors);
-  const { filter, value, limit } = req.params;
+  const { filter, value, limit } = req.query;
 
   if (filter) {
     const query = `SELECT * FROM product WHERE ${filter} = ${value}`;
