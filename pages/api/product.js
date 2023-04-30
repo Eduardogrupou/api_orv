@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
   // Consulta para selecionar todos os produtos da tabela "perfumes"
-  const query = "SELECT * FROM product";
+  const query = "SELECT * FROM product LIMIT 10";
   const results = await executeQuery({ query });
 
   if (results.error) {
@@ -38,13 +38,6 @@ export default async function handler(req, res) {
     gender: row.gender,
     brand_id: row.brand_id,
     destaque: row.destaque,
-
-
-
-
-
-
-
   }));
 
   res.status(200).json({ data: products });
