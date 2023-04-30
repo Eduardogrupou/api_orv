@@ -20,8 +20,17 @@ function runMiddleware(req, res, fn) {
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
 
-  // Consulta para selecionar todos os produtos da tabela "perfumes" que sejam masculinos e limitando a 10 resultados
-  const query = "SELECT * FROM product WHERE gender = 'female' LIMIT 10";
+  const { gender } = req.query;
+
+  // Define a consulta SQL base
+  let query = "SELECT * FROM products";
+
+  // Verifica se o filtro de gênero foi especificado
+  if (gender) {
+    // Adiciona a cláusula WHERE na consulta SQL para filtrar por gênero
+    query += ` WHERE gender = '${gender}'`;
+  }
+
   const results = await executeQuery({ query });
 
   if (results.error) {
@@ -29,7 +38,6 @@ export default async function handler(req, res) {
     return;
   }
 
-  // Mapeia os resultados da consulta para um objeto com os atributos desejados
   const products = results.map((row) => ({
     id: row.id,
     name: row.name,
@@ -42,4 +50,3 @@ export default async function handler(req, res) {
 
   res.status(200).json({ data: products });
 }
-
